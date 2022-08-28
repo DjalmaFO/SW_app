@@ -47,9 +47,9 @@ func (db *PlanetaRepositoryDB) CreatePlanet(req *domain.Planeta) (r interface{},
 		return
 	}
 
-	return []map[string]interface{}{
-		{"msg": fmt.Sprintf("Planeta %s cadastrado com sucesso!", req.Nome)},
-		{"aparicoes": req.Aparicoes},
+	return map[string]interface{}{
+		"msg":       fmt.Sprintf("Planeta %s cadastrado com sucesso!", req.Nome),
+		"aparicoes": req.Aparicoes,
 	}, nil
 }
 
