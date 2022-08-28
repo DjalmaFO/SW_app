@@ -1,3 +1,5 @@
+github.com/PipedreamHQ/pipedream-go v0.0.0-20220128224405-cf277d15008b h1:r5X5mxh2nZ6spAMorH4tBzPe5plZBgjTZ8akEyj/hvs=
+github.com/PipedreamHQ/pipedream-go v0.0.0-20220128224405-cf277d15008b/go.mod h1:qrCow1DDyi+McD1AqLGBB/wat8cwRted8iI0+EOg/HI=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=

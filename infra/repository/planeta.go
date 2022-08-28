@@ -7,6 +7,7 @@ import (
 	"app/infra/apis"
 	"app/usecase"
 	"context"
+	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -45,9 +46,11 @@ func (db *PlanetaRepositoryDB) CreatePlanet(req *domain.Planeta) (r interface{},
 		log.Println(err.Error())
 		return
 	}
-	log.Println(result.InsertedID)
 
-	return
+	return []map[string]interface{}{
+		{"msg": fmt.Sprintf("Planeta %s cadastrado com sucesso!", req.Nome)},
+		{"aparicoes": req.Aparicoes},
+	}, nil
 }
 
 func (db *PlanetaRepositoryDB) GetAll() (interface{}, error) {

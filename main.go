@@ -1,11 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"log"
-
 	"app/config"
 	"app/routers"
+	"fmt"
+	"log"
 
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo"
