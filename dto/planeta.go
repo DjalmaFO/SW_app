@@ -1,8 +1,8 @@
 package dto
 
 import (
+	"app/validator"
 	"fmt"
-	"strings"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
@@ -28,39 +28,16 @@ func NewPlanetaRequest() *PlanetaRequest {
 }
 
 func (pr *PlanetaRequest) Sanetizar() (err error) {
-	if ok := pr.ValidateName(); !ok {
+	if ok := validator.HaveContent(pr.Nome); !ok {
 		return fmt.Errorf("Nome inválido ou indefinido")
 	}
 
-	if ok := pr.ValidateClimate(); !ok {
+	if ok := validator.HaveContent(pr.Clima); !ok {
 		return fmt.Errorf("Clima inválido ou indefinido")
 	}
 
-	if ok := pr.ValidateGround(); !ok {
+	if ok := validator.HaveContent(pr.Terreno); !ok {
 		return fmt.Errorf("Terreno inválido ou indefinido")
 	}
 	return
-}
-
-func (pr *PlanetaRequest) ValidateName() bool {
-	if len(strings.TrimSpace(pr.Nome)) == 0 {
-		return false
-	}
-
-	return true
-}
-
-func (pr *PlanetaRequest) ValidateClimate() bool {
-	if len(strings.TrimSpace(pr.Clima)) == 0 {
-		return false
-	}
-
-	return true
-}
-func (pr *PlanetaRequest) ValidateGround() bool {
-	if len(strings.TrimSpace(pr.Terreno)) == 0 {
-		return false
-	}
-
-	return true
 }
