@@ -14,7 +14,7 @@ type ValidatorTest struct {
 	ValidatorTest []Validator
 }
 
-func ExecValidate(validator ValidatorTest, f func(interface{}) bool) bool {
+func (validator *ValidatorTest) ExecValidate(f func(interface{}) bool) bool {
 	for _, v := range validator.ValidatorTest {
 		if v.Esperado != f(v.Value) {
 			return false
