@@ -3,6 +3,7 @@ package usecase
 import (
 	"app/domain"
 	"app/dto"
+	"fmt"
 	"log"
 
 	"go.mongodb.org/mongo-driver/bson/primitive"
@@ -47,3 +48,5 @@ func (u *PlanetaUsecase) Filter(filter, value string) (r interface{}, err error)
 func (u *PlanetaUsecase) DeletePlanet(id primitive.ObjectID) error {
 	return u.PlanetaRepository.DeletePlanetByID(id)
 }
+
+var ErrorInvalidID = fmt.Errorf("ID inválido")

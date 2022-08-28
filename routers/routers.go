@@ -80,7 +80,7 @@ func RoutersConfig(e *echo.Echo, db *mongo.Client, ctx *context.Context) {
 		useCase := usecase.NewPlanetaUsecase(repo)
 		id, err := usecase.StringToObjectID(c.Param("id"))
 		if err != nil {
-			return c.JSON(http.StatusBadRequest, err.Error())
+			return c.JSON(http.StatusNotAcceptable, usecase.ErrorInvalidID.Error())
 		}
 
 		err = useCase.DeletePlanet(id)

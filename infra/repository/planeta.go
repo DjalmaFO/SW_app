@@ -79,7 +79,7 @@ func (db *PlanetaRepositoryDB) GetByFilter(filter string, value interface{}) (re
 		value, err = usecase.StringToObjectID(value.(string))
 		if err != nil {
 			log.Println(err.Error())
-			return nil, err
+			return nil, usecase.ErrorInvalidID
 		}
 	}
 
