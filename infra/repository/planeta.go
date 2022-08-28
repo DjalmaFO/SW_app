@@ -4,6 +4,7 @@ import (
 	"app/config"
 	"app/domain"
 	"app/dto"
+	"app/infra/apis"
 	"app/usecase"
 	"context"
 	"log"
@@ -34,7 +35,12 @@ func (db *PlanetaRepositoryDB) CreatePlanet(req *domain.Planeta) (r interface{},
 		return nil, domain.ErrPlanetExists
 	}
 
-	result, err := planetCollection.InsertOne(*db.ctx, req)
+	req.Aparicoes, err = apis.CountFilms(req.Nome)
+	if err != nil {
+		return
+	}
+
+	_, err = planetCollection.InsertOne(*db.ctx, req)
 	if err != nil {
 		log.Println(err.Error())
 		return

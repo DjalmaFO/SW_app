@@ -7,10 +7,11 @@ import (
 )
 
 type Planeta struct {
-	ID      primitive.ObjectID `bson:"_id,omitempty"`
-	Nome    string             `bson:"nome"`
-	Clima   string             `bson:"clima"`
-	Terreno string             `bson:"terreno"`
+	ID        primitive.ObjectID `bson:"_id,omitempty"`
+	Nome      string             `bson:"nome"`
+	Clima     string             `bson:"clima"`
+	Terreno   string             `bson:"terreno"`
+	Aparicoes int                `bson:"aparicoes"`
 }
 
 func NewPlaneta() *Planeta {
