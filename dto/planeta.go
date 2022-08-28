@@ -14,6 +14,14 @@ type PlanetaRequest struct {
 	Terreno string             `form:"terreno" json:"terreno"`
 }
 
+type PlanetaResponse struct {
+	ID        primitive.ObjectID `json:"id" bson:"_id"`
+	Nome      string             `json:"nome" bson:"nome"`
+	Clima     string             `json:"clima" bson:"clima"`
+	Terreno   string             `json:"terreno" bson:"terreno"`
+	Aparicoes int                `json:"aparicoes" bson:"aparicoes"`
+}
+
 // NewPlanetaRequest => Retona estrutura para Binding de informações aguardadas na requisição (via form-data ou JSON)
 func NewPlanetaRequest() *PlanetaRequest {
 	return &PlanetaRequest{}

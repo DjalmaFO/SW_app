@@ -3,6 +3,7 @@ package repository
 import (
 	"app/config"
 	"app/domain"
+	"app/dto"
 	"app/usecase"
 	"context"
 	"log"
@@ -52,7 +53,7 @@ func (db *PlanetaRepositoryDB) GetAll() (interface{}, error) {
 	}
 	defer cur.Close(*db.ctx)
 
-	var result []domain.Planeta
+	var result []dto.PlanetaResponse
 	if err = cur.All(*db.ctx, &result); err != nil {
 		log.Println(err.Error())
 	}
@@ -79,7 +80,7 @@ func (db *PlanetaRepositoryDB) GetByFilter(filter string, value interface{}) (re
 	}
 	defer cur.Close(*db.ctx)
 
-	var result []domain.Planeta
+	var result []dto.PlanetaResponse
 	if err = cur.All(*db.ctx, &result); err != nil {
 		log.Println(err.Error())
 	}
@@ -103,7 +104,7 @@ func (db *PlanetaRepositoryDB) countPlanetByName(name string) (int, error) {
 	}
 	defer cur.Close(*db.ctx)
 
-	var result []domain.Planeta
+	var result []dto.PlanetaResponse
 	if err = cur.All(*db.ctx, &result); err != nil {
 		log.Println(err.Error())
 		return 0, err
