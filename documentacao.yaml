@@ -1,0 +1,165 @@
+openapi: 3.0.0
+servers:
+  - description: API Planetas
+    url: http://127.0.0.1:5000
+info:
+  description: API para cadastro de planetas (funcionalidades relacionadas a inclusão, pesquisa e exclusão de planetas)
+  version: "1.0.0"
+  title: API Planetas
+  contact:
+    email: djalmafreire@outlook.com
+tags:
+  - name: planets
+    description: API Planetas
+paths:
+  /planet/new:
+    post:
+      tags:
+        - planets
+      summary: Insere novo cadastro de planeta
+      operationId: insertOne
+      description: Insere novo cadastro de planeta (nome, clima e terreno)
+      requestBody:
+        content:
+          formdata:
+            schema: 
+              type: object
+              properties:
+                nome:
+                  type: string
+                  format: text
+                  example: "ABX 211"
+                  required:
+                    - "true"
+                clima:
+                  type: string
+                  format: text
+                  example: "desértico"
+                  required:
+                    - "true"
+                terreno: 
+                  type: string
+                  format: text
+                  example: "arenoso"
+                  required:
+                    - "true"
+      responses:
+        '200':
+          description: map[string]string{"retorno":"Planeta ABX 211 cadastrado com sucesso!", "aparicoes":0}
+        '400':
+          description: "msg da falha"
+  /planets/all:
+    get:
+      tags:
+        - planets
+      summary: Retorna todos os registros existentes
+      operationId: searchAll
+      responses:
+        '200':
+          description: Retorna array de planetas (vazio se não houver cadastro)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retorno'
+        '400':
+          description: "msg da falha"
+  /planets/id/{id}:
+    get:
+      tags:
+        - planets
+      summary: Retorna retorna dados do planeta através do ID informado (caso haja cadastro)
+      operationId: searchPlanetById
+      parameters:
+      - name: id
+        in: path
+        description: ID do planeta a ser pesquisado
+        required: true
+        schema:
+          type: string
+          format: text
+          example: "511823cf979d4aeca5a407c2f488d3a5"
+      responses:
+        '200':
+          description: Retorno de sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retorno'
+        '400':
+          description: "msg da falha"
+  /planets/name/{name}:
+    get:
+      tags:
+        - planets
+      summary: Retorna retorna dados do planeta através do nome informado (caso haja cadastro)
+      operationId: searchPlanetByName
+      parameters:
+      - name: name
+        in: path
+        description: Nome do planeta a ser pesquisado
+        required: true
+        schema:
+          type: string
+          format: text
+          example: "Planeta XYZ"
+      responses:
+        '200':
+          description: Retorno de sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Retorno'
+        '400':
+          description: "msg da falha"
+  /planets/delete/{id}:
+    delete:
+      tags:
+        - planets
+      summary: Exclui da base de dados um planeta através do ID informado (caso haja cadastro)
+      operationId: deletePlanetById
+      parameters:
+      - name: id
+        in: path
+        description: ID do planeta a ser excluido
+        required: true
+        schema:
+          type: string
+          format: text
+          example: "511823cf979d4aeca5a407c2f488d3a5"
+      responses:
+        '200':
+          description: Planeta removido com sucesso!
+        '400':
+          description: "msg da falha"
+        '406':
+          description: ID inválido
+components:
+  schemas:
+    Retorno:
+      type: array
+      items:
+        properties:
+          id:
+            type: string
+            format: text
+            example: "511823cf979d4aeca5a407c2f488d3a5"
+          nome:
+            type: string
+            format: text
+            example: "ABX 211"
+          clima:
+            type: string
+            format: text
+            example: "desértico"
+          terreno: 
+            type: string
+            format: text
+            example: "arenoso"
+          aparicoes: 
+            type: integer
+            description: "Quantidade de aparição em filmes"
+            format: int
+            example: 0
+        
+
+        
