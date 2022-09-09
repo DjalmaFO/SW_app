@@ -21,7 +21,7 @@ paths:
       description: Insere novo cadastro de planeta (nome, clima e terreno)
       requestBody:
         content:
-          formdata:
+          multipart/form-data:
             schema: 
               type: object
               properties:
